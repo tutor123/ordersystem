@@ -1,0 +1,6 @@
+onlineshop/item/controllers/ItemController.class
+onlineshop/item/Application.class
+onlineshop/item/configs/DatabaseConfig.class
+onlineshop/item/models/Item.class
+onlineshop/item/controllers/MainController.class
+onlineshop/item/models/Itemdao.class

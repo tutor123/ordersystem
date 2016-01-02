@@ -2,24 +2,24 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>onlineshopping</groupId>
-  <artifactId>shopping-spring-hibernate</artifactId>
+  <groupId>onlineshop</groupId>
+  <artifactId>order</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>shopping-spring-hibernate</name>
+  <name>order</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
  <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.2.3.RELEASE</version>
     <relativePath />
   </parent>
-  
    <build>
   <plugins>
     <plugin>
@@ -32,7 +32,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>onlineshop.customer.App</mainClass>
+            <mainClass>onlineshop.order.Application</mainClass>
           </manifest>
         </archive>
       </configuration>

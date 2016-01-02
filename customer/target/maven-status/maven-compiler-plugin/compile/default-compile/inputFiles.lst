@@ -1,6 +1,6 @@
-/Users/blair/Documents/workspace/customer/customer/src/main/java/onlineshop/customer/controllers/MainController.java
-/Users/blair/Documents/workspace/customer/customer/src/main/java/onlineshop/customer/App.java
-/Users/blair/Documents/workspace/customer/customer/src/main/java/onlineshop/customer/configs/DatabaseConfig.java
-/Users/blair/Documents/workspace/customer/customer/src/main/java/onlineshop/customer/models/Customer.java
-/Users/blair/Documents/workspace/customer/customer/src/main/java/onlineshop/customer/models/CustomerDao.java
-/Users/blair/Documents/workspace/customer/customer/src/main/java/onlineshop/customer/controllers/CustomerController.java
+/Users/blair/lab511/ordersystem/customer/src/main/java/onlineshop/customer/controllers/CustomerController.java
+/Users/blair/lab511/ordersystem/customer/src/main/java/onlineshop/customer/models/CustomerDao.java
+/Users/blair/lab511/ordersystem/customer/src/main/java/onlineshop/customer/models/Customer.java
+/Users/blair/lab511/ordersystem/customer/src/main/java/onlineshop/customer/configs/DatabaseConfig.java
+/Users/blair/lab511/ordersystem/customer/src/main/java/onlineshop/customer/controllers/MainController.java
+/Users/blair/lab511/ordersystem/customer/src/main/java/onlineshop/customer/App.java
