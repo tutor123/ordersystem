@@ -34,8 +34,8 @@ public class CustomerDao {
 		public List<Customer> getAll() {
 			    return getSession().createQuery("from Customer").list();
 			  }
-		  public Customer getById(long id) {
-			    return (Customer) getSession().load(Customer.class, id);
+		  public Customer getByName(String name) {
+			    return (Customer) getSession().load(Customer.class, name);
 			  }
 
 			  public void update(Customer c) {

@@ -48,9 +48,10 @@ public class CustomerController {
 	  }
 	@RequestMapping(value="/customer/list")
 	  @ResponseBody
-	  public String getAll(String name) {
+	  public List<Customer> getAll() {
 		logger.info("enter getAll");
-	    String userId = "";
+		return customerdao.getAll();
+	    /*String userId = "";
 	    try {
 	    	List<Customer> cs = customerdao.getAll();
 	        for (Customer c : cs) 
@@ -62,12 +63,12 @@ public class CustomerController {
 	    catch (Exception ex) {
 	      return "Customer not found: " + ex.toString();
 	    }
-	    return "users are: " + userId;
+	    return "users are: " + userId;*/
 	  }
 	/**
 	   * Update the email and the name for the user indentified by the passed id.
 	   */
-	  @RequestMapping(value="/update")
+	  /*@RequestMapping(value="/update")
 	  @ResponseBody
 	  public String updateName(long id, String email, String name) {
 	    try {
@@ -80,7 +81,7 @@ public class CustomerController {
 	      return "Error updating the user: " + ex.toString();
 	    }
 	    return "User succesfully updated!";
-	  } 
+	  } */
 
 	  // ------------------------
 	  // PRIVATE FIELDS
@@ -88,7 +89,13 @@ public class CustomerController {
 	  
 	  // Wire the UserDao used inside this controller.
 	 
-	  
+		@RequestMapping(value="/customer/getbyname")
+		  @ResponseBody
+		  public Customer getByName(String name) {
+			 logger.info("enter getByName");
+				return customerdao.getByName(name);
+		
+	}
 	  
 }
 
