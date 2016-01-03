@@ -21,7 +21,7 @@ public class CustomerController {
 
 	 @Autowired
 	  private CustomerDao customerdao;
-	@RequestMapping(value="/customer/create")
+	@RequestMapping(value="/customer/add")
 	  @ResponseBody
 	  
 	  public String create(String name, String email) {

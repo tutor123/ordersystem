@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import onlineshop.order.client.CustomerClient;
 import onlineshop.order.client.ItemClient;
-import onlineshop.order.models.Customer;
 import onlineshop.order.models.Order;
 import onlineshop.order.models.Orderdao;
-import org.springframework.web.client.RestTemplate;
+import onlineshop.order.models.OrderRepository;
 
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,25 +18,32 @@ import org.slf4j.LoggerFactory;
 public class OrderController {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
+	//@Autowired
+	private OrderRepository orderRepository;
 	
 	@Autowired
     private Orderdao od;
 	
+	private CustomerClient customerClient;
+	private ItemClient itemClient;
 	
-	private CustomerClient cc = new CustomerClient();
+	@Autowired
+	private OrderController(OrderRepository orderRepository, 
+			CustomerClient customerClient,
+			ItemClient itemClient) {
+		super();
+		this.orderRepository = orderRepository;
+		this.customerClient = customerClient;
+		this.itemClient = itemClient;
+	}
 	
-	//@Autowired
-	private ItemClient ic = new ItemClient();
-
-	
-	@RequestMapping(value="/order/create")
+	@RequestMapping(value="/order/add")
 	  @ResponseBody
 	 
 	  public String create(long customerId, long itemId, int count) {
 	    try {
 	    	 logger.info("enter order");
 	      Order o = new Order(customerId, itemId, count);
-	      logger.info("enter order 2");
 	      od.save(o);
 	    }
 	    catch (Exception ex) {
@@ -74,21 +80,8 @@ public class OrderController {
 		}
 		return "order delete success!!";
 	}
-	@RequestMapping(value="/order/list")
-	@ResponseBody
-	public String list(Order o){
-		String result = "";
-		try{
-			List<Customer> cs = cc.getAll();
-			for (Customer c:cs)
-			{
-				result = result.concat(c.getName()).concat(",");
-			}
-			logger.info("order list is " + result);
-		}
-		catch(Exception ex){
-			return "fail to list order:"+ex.toString();
-		}
-		return result;
+	@RequestMapping(value="/")
+	public ModelAndView list(){
+		return new ModelAndView("orderlist", "orders", od.getAll());
 	}
 }

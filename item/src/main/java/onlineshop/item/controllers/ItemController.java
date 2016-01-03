@@ -1,4 +1,6 @@
 package onlineshop.item.controllers;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,27 +48,14 @@ public class ItemController {
 	    return "Item succesfully deleted!";
 	  }
 	@RequestMapping(value="/item/list")
-	  @ResponseBody
-	  public Item getAll() {
-		 logger.info("enter itemgetAll");
-			return itemdao.getAll().get(0);
-	   /* String itemId;
-	    try {
-	    	itemdao.getAll();
-	      itemId = String.valueOf(i.getId());
-	     
-	    }
-	    catch (Exception ex) {
-	      return "Item not found: " + ex.toString();
-	    }
-	    return "The item id is: " + itemId;*/
-	  }
+	@ResponseBody
+	public List<Item> getAll() {
+		return itemdao.getAll();
+	}
 
 	@RequestMapping(value="/item/getbyname")
-	  @ResponseBody
-	  public Item getByName(String name) {
-		 logger.info("enter getByName");
-			return itemdao.getByName(name);
-	
-}
+	public Item getByName(String name) {
+		return itemdao.getByName(name);
+
+	}
 }

@@ -26,7 +26,7 @@ public class Orderdao {
 	    return;
 	  }
 	  @SuppressWarnings("unchecked")
-	public List<Item> getAll(Order o) {
+	public List<Item> getAll() {
 		    return getSession().createQuery("from Order").list();
 		  }
 	  
