@@ -10,9 +10,6 @@
   <name>order</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
 
  <parent>
     <groupId>org.springframework.boot</groupId>
@@ -21,6 +18,9 @@
     <relativePath />
   </parent>
   
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
   
    <build>
   <plugins>

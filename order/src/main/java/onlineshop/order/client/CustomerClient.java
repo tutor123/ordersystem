@@ -27,7 +27,7 @@ public class CustomerClient {
 	}
 	public Customer getByName(String name){
 		RestTemplate restTemplate = new RestTemplate();
-	     Customer cs = restTemplate.getForObject("http://localhost:8080/customer/getbyname", Customer.class);
+	     Customer cs = restTemplate.getForObject("http://localhost:8081/customer/getbyname", Customer.class);
 	     logger.info("order/list/getbyname");
 	     logger.info(cs.toString());
 	     return cs;
@@ -36,7 +36,7 @@ public class CustomerClient {
 	
 	public Customer getById(long id){
 		RestTemplate restTemplate = new RestTemplate();
-		Customer[] cs = restTemplate.getForObject("http://localhost:8080/customer/list", Customer[].class);
+		Customer[] cs = restTemplate.getForObject("http://localhost:8081/customer/list", Customer[].class);
 		return Arrays.asList(cs).stream().filter(c->c.getId()==id).collect(Collectors.toList()).get(0);		
 	}
 

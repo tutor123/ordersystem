@@ -1,0 +1,9 @@
+customer:
+  build: customer
+  net: host
+item:
+  build: item
+  net: host
+order:
+  build: order
+  net: host
