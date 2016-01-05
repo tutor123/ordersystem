@@ -58,6 +58,7 @@ public class Customer {
 	}
 	public Customer(String name) {
 		// TODO Auto-generated constructor stub
+		this.name=name;
 	}
 	@Override
     public String toString() {
