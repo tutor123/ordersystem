@@ -8,7 +8,6 @@ import onlineshop.order.client.CustomerClient;
 import onlineshop.order.client.ItemClient;
 import onlineshop.order.models.Order;
 import onlineshop.order.models.Orderdao;
-import onlineshop.order.models.OrderRepository;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,9 +16,6 @@ import org.slf4j.LoggerFactory;
 @Controller
 public class OrderController {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-
-	//@Autowired
-	private OrderRepository orderRepository;
 	
 	@Autowired
     private Orderdao od;
@@ -28,11 +24,9 @@ public class OrderController {
 	private ItemClient itemClient;
 	
 	@Autowired
-	private OrderController(OrderRepository orderRepository, 
-			CustomerClient customerClient,
+	private OrderController(CustomerClient customerClient,
 			ItemClient itemClient) {
 		super();
-		this.orderRepository = orderRepository;
 		this.customerClient = customerClient;
 		this.itemClient = itemClient;
 	}
@@ -42,7 +36,6 @@ public class OrderController {
 	 
 	  public String create(long customerId, long itemId, int count) {
 	    try {
-	    	 logger.info("enter order");
 	      Order o = new Order(customerId, itemId, count);
 	      od.save(o);
 	    }
