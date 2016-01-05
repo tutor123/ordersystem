@@ -33,7 +33,7 @@ public class ItemController {
 	    catch (Exception ex) {
 	      return "Error creating the item: " + ex.toString();
 	    }
-	    return "item succesfully created!";
+	    return "item succesfully created";
 	  }
 	@RequestMapping(value="/item/delete")
 	  @ResponseBody
