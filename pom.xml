@@ -13,6 +13,7 @@
         <module>customer</module>
         <module>item</module>
         <module>order</module>
+        <module>eureka</module>
     </modules>
 
     <build>
