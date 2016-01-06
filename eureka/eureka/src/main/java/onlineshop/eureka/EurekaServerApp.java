@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @EnableEurekaServer
-
-
 public class EurekaServerApp 
 {
     public static void main( String[] args )
