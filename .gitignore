@@ -1,5 +1,8 @@
 # Package Files #
 target/
+customer/target/
+item/target/
+order/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
