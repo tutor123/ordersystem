@@ -1,4 +1,5 @@
-package onlineshop.order.models;
+package onlineshop.bill.models;
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,26 +8,27 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+
+
+
+
 @Repository
 @Transactional
-public class Orderdao {
+public class BillDao {
 	@Autowired
 	  private SessionFactory _sessionFactory;
 	private Session getSession() {
 	    return _sessionFactory.getCurrentSession();
 	  }
-	public void save(Order o) {
-	    getSession().save(o);
-	    return;
-	  }
-	  
-	  public void delete(Order o) {
-	    getSession().delete(o);
-	    return;
-	  }
-	  @SuppressWarnings("unchecked")
-	public List<Item> getAll() {
-		    return getSession().createQuery("from Shipping").list();
+	  public void save(Bill b) {
+		    getSession().save(b);
+		    return;
 		  }
-	  
+	  @SuppressWarnings("unchecked")
+	public List<Bill> getAll() {
+		    return getSession().createQuery("from Bill").list();
+		  }
+		  
+
 }

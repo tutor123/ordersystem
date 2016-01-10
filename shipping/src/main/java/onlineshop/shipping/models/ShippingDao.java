@@ -1,4 +1,4 @@
-package onlineshop.order.models;
+package onlineshop.shipping.models;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,25 +7,26 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 @Repository
 @Transactional
-public class Orderdao {
+public class ShippingDao {
 	@Autowired
 	  private SessionFactory _sessionFactory;
 	private Session getSession() {
 	    return _sessionFactory.getCurrentSession();
 	  }
-	public void save(Order o) {
-	    getSession().save(o);
+	public void save(ShippingRecord srd) {
+	    getSession().save(srd);
 	    return;
 	  }
 	  
-	  public void delete(Order o) {
-	    getSession().delete(o);
+	  public void delete(ShippingRecord srd) {
+	    getSession().delete(srd);
 	    return;
 	  }
 	  @SuppressWarnings("unchecked")
-	public List<Item> getAll() {
+	public List<ShippingRecord> getAll() {
 		    return getSession().createQuery("from Shipping").list();
 		  }
 	  

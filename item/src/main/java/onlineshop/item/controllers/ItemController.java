@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import onlineshop.item.models.Item;
 import onlineshop.item.models.Itemdao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 @Controller
 public class ItemController {

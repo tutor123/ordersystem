@@ -1,4 +1,4 @@
-package onlineshop.customer.models;
+package onlineshop.bill.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
