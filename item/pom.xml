@@ -5,26 +5,27 @@
   <groupId>onlineshop</groupId>
   <artifactId>item</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
-  <name>item</name>
-  <url>http://maven.apache.org</url>
+  <parent>
+      <groupId>onlineshop</groupId>
+      <artifactId>parent</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+  </parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-  </properties>
- <dependencyManagement>
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-netflix</artifactId>
-            <version>1.0.4.RELEASE</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
-</dependencyManagement>
+  </dependencyManagement>
+
+
  <build>
   <plugins>
     <plugin>
@@ -42,20 +43,13 @@
         </archive>
       </configuration>
     </plugin>
-    <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-  </plugins>
-</build>
-
-
-<parent>
+  <plugin>
     <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.2.3.RELEASE</version>
-    <relativePath />
-  </parent>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+  </plugin>
+  </plugins>
+  </build>
+
   <dependencies>
     <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -88,10 +82,4 @@
     </dependency>
   </dependencies>
 </project>
- 
-    
-  	
-  
-  
-
 

@@ -5,10 +5,13 @@
 	<groupId>onlineshop</groupId>
 	<artifactId>customer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
-	<name>customer</name>
-	<url>http://maven.apache.org</url>
+        <parent>
+		<groupId>onlineshop</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>	
+        </parent>
+       
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,8 +20,8 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-netflix</artifactId>
-				<version>1.0.4.RELEASE</version>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

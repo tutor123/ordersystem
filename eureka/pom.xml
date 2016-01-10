@@ -5,16 +5,14 @@
   <groupId>onlineshop</groupId>
   <artifactId>eureka</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
-  <name>eureka</name>
-  <url>http://maven.apache.org</url>
+  <parent>
+      <groupId>onlineshop</groupId>
+      <artifactId>parent</artifactId>
+      <version>0.0.1-SNAPSHOT</version>       
+  </parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring-cloud.version>1.0.0.RC1</spring-cloud.version>
-    <spring-boot.version>1.2.0.RELEASE</spring-boot.version>
-  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -27,16 +25,16 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-<dependency>
+  <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-eureka-server</artifactId>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+  </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -60,15 +58,4 @@
     </plugins>
   </build>
  
-  <repositories>
-    <repository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>http://repo.spring.io/milestone</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  
 </project>
