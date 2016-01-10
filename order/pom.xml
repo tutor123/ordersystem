@@ -38,7 +38,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>onlineshop.item.Application</mainClass>
+            <mainClass>onlineshop.order.Application</mainClass>
           </manifest>
         </archive>
       </configuration>
