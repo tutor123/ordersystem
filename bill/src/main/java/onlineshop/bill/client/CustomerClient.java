@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 @Service
 public class CustomerClient {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerClient.class);
-	@Autowired
 	RestTemplate restTemplate = new RestTemplate();
 	
 	@Autowired

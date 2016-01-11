@@ -19,8 +19,7 @@ import org.slf4j.LoggerFactory;
 public class OrderClient {
 	private static final Logger logger = LoggerFactory.getLogger(OrderClient.class);
 
-	@Autowired
-	 RestTemplate restTemplate;
+	 RestTemplate restTemplate = new RestTemplate();;
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
