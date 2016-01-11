@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import onlineshop.bill.models.Bill;
 import onlineshop.bill.models.BillDao;
 
-
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Consumer;
-import com.rabbitmq.client.DefaultConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,15 +17,14 @@ import org.slf4j.LoggerFactory;
 public class BillController {
 	private static final Logger logger = LoggerFactory.getLogger(BillController.class);
 
-	
 	  
 	@Autowired
 	private BillDao bd;
 	@RequestMapping(value="/bill/add")
 	  @ResponseBody
-	  public String create(int orderId,int customerId, float balance) {
+	  public String create(int orderId,int customerId,float total) {
 		    try {
-		      Bill bl = new Bill(orderId, customerId,balance);
+		      Bill bl = new Bill(orderId, customerId,total);
 		      bd.save(bl);
 		    }
 		    catch (Exception ex) {

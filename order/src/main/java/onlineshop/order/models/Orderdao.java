@@ -15,9 +15,9 @@ public class Orderdao {
 	private Session getSession() {
 	    return _sessionFactory.getCurrentSession();
 	  }
-	public void save(Order o) {
+	public long save(Order o) {
 	    getSession().save(o);
-	    return;
+	    return o.getId();
 	  }
 	  
 	  public void delete(Order o) {

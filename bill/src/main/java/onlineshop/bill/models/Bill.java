@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="bill")
 public class Bill {
-	public Bill(int orderId,int customerId, float balance) {
+	public Bill(int orderId,long customerId, float balance) {
 		
 		this.customerId = customerId;
 		this.balance = balance;
@@ -20,7 +20,7 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int orderId;
-	private int customerId;
+	private long customerId;
 	private float balance;
 	public int getId() {
 		return id;
@@ -34,7 +34,7 @@ public class Bill {
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public int getCustomerId() {
+	public long getCustomerId() {
 		return customerId;
 	}
 	public void setCustomerId(int customerId) {

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import onlineshop.order.client.CustomerClient;
 import onlineshop.order.client.ItemClient;
+import onlineshop.order.client.MessageClient;
 import onlineshop.order.models.Order;
 import onlineshop.order.models.Orderdao;
 
@@ -22,13 +23,15 @@ public class OrderController {
 	
 	private CustomerClient customerClient;
 	private ItemClient itemClient;
+	private MessageClient messageClient;
 	
 	@Autowired
 	private OrderController(CustomerClient customerClient,
-			ItemClient itemClient) {
+			ItemClient itemClient,MessageClient messageClient) {
 		super();
 		this.customerClient = customerClient;
 		this.itemClient = itemClient;
+		this.messageClient=messageClient;
 	}
 	
 	@RequestMapping(value="/order/add")
@@ -37,7 +40,8 @@ public class OrderController {
 	  public String create(long customerId, long itemId, int count) {
 	    try {
 	      Order o = new Order(customerId, itemId, count);
-	      od.save(o);
+	      long id = od.save(o);
+	      messageClient.send(MessageClient.ORDER_QUEUE_NAME, "Order create:" + id);
 	    }
 	    catch (Exception ex) {
 	      return "Error creating the order: " + ex.toString();

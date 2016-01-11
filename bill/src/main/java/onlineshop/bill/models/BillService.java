@@ -4,20 +4,33 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import onlineshop.bill.client.CustomerClient;
 import onlineshop.bill.client.ItemClient;
+import onlineshop.bill.client.MessageClient;
 import onlineshop.bill.client.OrderClient;
 
-public class BillService {
+@Component
+public class BillService extends Thread{
 	private static final Logger logger = LoggerFactory.getLogger(BillService.class);
-
-	private OrderClient oc;
-
-	private ItemClient ic;
-	private CustomerClient cc;
+	@Autowired
+	private BillDao bd;
 	
-	public float calculateTotalPrice(int orderId){
+	@Autowired
+	private OrderClient oc;
+	@Autowired
+	private ItemClient ic;
+	@Autowired
+	private CustomerClient cc;
+	@Autowired
+	private MessageClient mgc;
+	
+	public BillService() {
+		super();
+	}
+	private float calculateTotalPrice(int orderId){
 		float total=0;
 		Order o = oc.getById(orderId);
 		List<OrderLine> its=o.getItems();
@@ -44,5 +57,42 @@ public class BillService {
 		return false;
 		
 		
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("BillService running");
+		while(true){
+			try {
+				if (oc == null)  {
+					logger.error("order client is null");
+					return;
+				}
+				
+				
+				String msg=mgc.recv(MessageClient.ORDER_QUEUE_NAME);
+				if (msg.startsWith("Order create:"))
+				{
+					String id=msg.substring(msg.lastIndexOf(':')+1);
+					logger.info("recv order event,order id %s",id);
+					processBill(Integer.parseInt(id));
+				}
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void processBill(int orderId){
+		if (checkBalance(orderId))
+		{
+			Bill b = new Bill(orderId,oc.getById(orderId).getCustomerId(),calculateTotalPrice(orderId));
+			bd.save(b);
+		}
+		else{
+			logger.info("plz add more balance!!!!");
+		}
 	}
 }
