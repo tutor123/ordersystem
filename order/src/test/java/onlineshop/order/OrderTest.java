@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import org.junit.Assert;
@@ -38,8 +39,8 @@ public class OrderTest {
 	}
 	@Test
 	public void testAddOder() {
-	Order o = new Order(101,101,3);
-	doNothing().when(od).save(o);
+	Order o = new Order(5,11,3);
+	Mockito.when(od.save(o)).thenReturn(9l);
 	//Assert.assertEquals(oc.create(101, 101, 3), "order succesfully created!");
 	}
 }
