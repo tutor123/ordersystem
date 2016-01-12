@@ -26,4 +26,10 @@ cd ../bill
 nohup mvn spring-boot:run & 2>&1 > /dev/null
 sleep 8
 
+echo "starting Shipping"
+cd ../shipping
+nohup mvn spring-boot:run & 2>&1 > /dev/null
+sleep 8
+
+
 echo "All service started"
