@@ -93,7 +93,10 @@ public class BillService extends Thread{
 		if (checkBalance(orderId))
 		{
 			Bill b = new Bill(orderId,oc.getById(orderId).getCustomerId(),calculateTotalPrice(orderId));
-			bd.save(b);
+			int id = bd.save(b);
+			
+			mgc.send(MessageClient.SHIPPING_QUEUE_NAME, "Bill accepted:" +id);
+			
 		}
 		else{
 			logger.info("plz add more balance!!!!");

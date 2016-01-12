@@ -24,9 +24,9 @@ public class CustomerController {
 	@RequestMapping(value="/customer/add")
 	  @ResponseBody
 	  
-	  public String create(String name, String email) {
+	  public String create(String name, String city,String street) {
 	    try {
-	      Customer customer = new Customer(name, email);
+	      Customer customer = new Customer(name, city,street);
 	      customerdao.save(customer);
 	    }
 	    catch (Exception ex) {

@@ -17,6 +17,7 @@ import com.rabbitmq.client.Channel;
 public class MessageClient {
 	public final static String ORDER_QUEUE_NAME = "orderq";
 	public final static String SHIPPING_QUEUE_NAME = "shippingq";
+	
 	private static final Logger logger = LoggerFactory.getLogger(MessageClient.class);
 
 	public void send(String q,String msg){

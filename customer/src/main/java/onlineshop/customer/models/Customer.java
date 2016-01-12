@@ -54,6 +54,12 @@ public class Customer {
 		this.name=name;
 		this.email=email;
 	}
+	public Customer(String name, String street, String city) {
+		super();
+		this.name = name;
+		this.street = street;
+		this.city = city;
+	}
 	public Customer(String name) {
 		// TODO Auto-generated constructor stub
 	}

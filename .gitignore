@@ -5,6 +5,8 @@ item/target/
 order/target/
 bill/target/
 shipping/target/
+.settings
+*/.settings
 *.classpath
 *.project
 */nohup.out

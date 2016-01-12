@@ -21,9 +21,9 @@ public class BillDao {
 	private Session getSession() {
 	    return _sessionFactory.getCurrentSession();
 	  }
-	  public void save(Bill b) {
+	  public int save(Bill b) {
 		    getSession().save(b);
-		    return;
+		    return b.getId();
 		  }
 	  @SuppressWarnings("unchecked")
 	public List<Bill> getAll() {

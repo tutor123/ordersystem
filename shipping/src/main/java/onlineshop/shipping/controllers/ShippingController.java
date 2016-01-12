@@ -13,7 +13,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 
-
+import onlineshop.shipping.client.MessageClient;
 import onlineshop.shipping.models.ShippingDao;
 import onlineshop.shipping.models.ShippingRecord;
 
@@ -24,7 +24,8 @@ public class ShippingController {
 	private static final Logger logger = LoggerFactory.getLogger(ShippingController.class);
 	@Autowired
 	private ShippingDao sd;
-	
+	@Autowired
+	private MessageClient mgc;
 	@RequestMapping(value="/shipping/add")
 	@ResponseBody
 	public String create(int orderId,long customerId,String customerAddress ) {
@@ -32,6 +33,7 @@ public class ShippingController {
 		try {
 			ShippingRecord shipRd = new ShippingRecord(orderId,customerId, customerAddress);
 			sd.save(shipRd);
+			
 		}
 		catch (Exception ex) {
 			return "Error creating the shipping: " + ex.toString();

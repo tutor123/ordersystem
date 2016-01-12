@@ -16,6 +16,10 @@ public class Bill {
 		this.orderId=orderId;
 	}
         
+	public Bill() {
+		super();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
