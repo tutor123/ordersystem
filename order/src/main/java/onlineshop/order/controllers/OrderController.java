@@ -6,10 +6,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import onlineshop.order.client.CustomerClient;
 import onlineshop.order.client.ItemClient;
+import onlineshop.order.client.MessageClient;
+import onlineshop.order.models.Item;
 import onlineshop.order.models.Order;
 import onlineshop.order.models.Orderdao;
 
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +26,15 @@ public class OrderController {
 	
 	private CustomerClient customerClient;
 	private ItemClient itemClient;
+	private MessageClient messageClient;
 	
 	@Autowired
 	private OrderController(CustomerClient customerClient,
-			ItemClient itemClient) {
+			ItemClient itemClient,MessageClient messageClient) {
 		super();
 		this.customerClient = customerClient;
 		this.itemClient = itemClient;
+		this.messageClient=messageClient;
 	}
 	
 	@RequestMapping(value="/order/add")
@@ -37,7 +43,8 @@ public class OrderController {
 	  public String create(long customerId, long itemId, int count) {
 	    try {
 	      Order o = new Order(customerId, itemId, count);
-	      od.save(o);
+	      long id = od.save(o);
+	      messageClient.send(MessageClient.ORDER_QUEUE_NAME, "Order create:" + id);
 	    }
 	    catch (Exception ex) {
 	      return "Error creating the order: " + ex.toString();
@@ -64,7 +71,6 @@ public class OrderController {
 	@ResponseBody
 	public String delete(long id){
 		try{
-			Orderdao od = new Orderdao();
 			Order o = new Order();
 			od.delete(o);
 		}
@@ -72,6 +78,12 @@ public class OrderController {
 			return "fail to delete order:"+ex.toString();
 		}
 		return "order delete success!!";
+	}
+	@RequestMapping(value="/order/list")
+	@ResponseBody
+	public List<Order> listAll(){
+		logger.info("order controller enter getAll");
+		return od.getAll();
 	}
 	@RequestMapping(value="/")
 	public ModelAndView list(){

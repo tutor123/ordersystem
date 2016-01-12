@@ -15,9 +15,9 @@ public class Orderdao {
 	private Session getSession() {
 	    return _sessionFactory.getCurrentSession();
 	  }
-	public void save(Order o) {
+	public long save(Order o) {
 	    getSession().save(o);
-	    return;
+	    return o.getId();
 	  }
 	  
 	  public void delete(Order o) {
@@ -25,8 +25,8 @@ public class Orderdao {
 	    return;
 	  }
 	  @SuppressWarnings("unchecked")
-	public List<Item> getAll() {
-		    return getSession().createQuery("from Shipping").list();
+	public List<Order> getAll() {
+		    return getSession().createQuery("from Order").list();//Order is the class not, not table name
 		  }
 	  
 }

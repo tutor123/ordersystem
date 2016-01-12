@@ -19,7 +19,7 @@ import onlineshop.order.models.*;
 
 @Service
 public class CustomerClient {
-	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomerClient.class);
 	@Autowired
 	RestTemplate restTemplate = new RestTemplate();
 	
