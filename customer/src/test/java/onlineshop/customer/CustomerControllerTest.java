@@ -43,10 +43,10 @@ public class CustomerControllerTest {
 	
 	@Test
     public void testAddCustomerController(){
-		Customer c = new Customer("test", "test@gg.com");
+		Customer c = new Customer("test", "test","test");
 		//mock the dao instance to do nothing when "create()" get called.
 		doNothing().when(dao).save(c);
 		
-		Assert.assertEquals(ctlr.create("test", "test@gg.com"), "User succesfully created!");
+		Assert.assertEquals(ctlr.create("test", "test","test"), "User succesfully created!");
 	}
 }
