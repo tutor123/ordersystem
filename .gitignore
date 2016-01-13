@@ -9,6 +9,7 @@ shipping/target/
 */.settings
 *.classpath
 *.project
+nohup.out
 */nohup.out
 pom.xml.tag
 pom.xml.releaseBackup
