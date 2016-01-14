@@ -9,6 +9,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rabbitmq.client.Channel;
@@ -19,9 +20,16 @@ public class MessageClient {
 	public final static String SHIPPING_QUEUE_NAME = "shippingq";
 	
 	private static final Logger logger = LoggerFactory.getLogger(MessageClient.class);
+	
+	public ConnectionFactory makeConnectionFactory() {
+		return new ConnectionFactory();
+	}
+	public QueueingConsumer makeQueueingConsumer(Channel channel) {
+		return new QueueingConsumer(channel);
+	}
 
 	public void send(String q,String msg){
-		ConnectionFactory factory = new ConnectionFactory();
+		ConnectionFactory factory = makeConnectionFactory();
 		factory.setHost("192.168.99.100");
 		Connection connection = null;
 		Channel channel = null;
@@ -56,7 +64,7 @@ public class MessageClient {
 		
 	}
 	public String recv(String q) throws Exception{
-			ConnectionFactory factory = new ConnectionFactory();
+			ConnectionFactory factory = makeConnectionFactory();
 			factory.setHost("192.168.99.100");
 			Connection connection = null;
 			Channel channel = null;
@@ -66,7 +74,7 @@ public class MessageClient {
 				channel.queueDeclare(q, false, false, false, null);
 				logger.info(" [*] Waiting for messages. ");
 
-				QueueingConsumer consumer = new QueueingConsumer(channel);
+				QueueingConsumer consumer = makeQueueingConsumer(channel);
 				channel.basicConsume(q, true, consumer);
 
 				while (true) {
