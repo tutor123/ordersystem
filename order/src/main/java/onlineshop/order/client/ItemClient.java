@@ -5,6 +5,8 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +21,8 @@ import onlineshop.order.models.*;
 public class ItemClient {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
-	@Autowired
-	 RestTemplate restTemplate;
+	
+	 RestTemplate restTemplate = new RestTemplate();
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
@@ -41,9 +43,14 @@ public class ItemClient {
 		Item it = restTemplate.getForObject("http://localhost:8082/item/list", Item.class);
 				return it;
 	}
-	
-	public Item getById(long id){
+	@HystrixCommand(fallbackMethod = "getByIdFallback")
+	public Item getItemById(long id){
+		logger.info("enter itemclient getById");
 		Item[] it = restTemplate.getForObject("http://localhost:8082/item/list", Item[].class);
 		return Arrays.asList(it).stream().filter(c->c.getId()==id).collect(Collectors.toList()).get(0);		
 	}
+	public Item getByIdFallback(long id) {
+		return new Item("mockedItem",10f);
+	}
+
 }

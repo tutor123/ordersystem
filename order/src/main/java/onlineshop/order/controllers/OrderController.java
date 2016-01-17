@@ -82,7 +82,8 @@ public class OrderController {
 	@RequestMapping(value="/order/list")
 	@ResponseBody
 	public List<Order> listAll(){
-		logger.info("order controller enter getAll");
+		logger.info("order controller getAll");
+
 		return od.getAll();
 	}
 	@RequestMapping(value="/")
