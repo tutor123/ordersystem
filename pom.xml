@@ -21,6 +21,7 @@
         <module>eureka</module>
         <module>bill</module>
         <module>shipping</module>
+    <module>hystrix</module>
   </modules>
 	
   <properties>

@@ -5,6 +5,8 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +14,6 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import onlineshop.order.controllers.OrderController;
 import onlineshop.order.models.*;
 
 
@@ -42,6 +43,7 @@ public class CustomerClient {
 		
 	}
 	
+	@HystrixCommand(fallbackMethod = "getByIdFallback")
 	public Customer getById(long id){
 		
 		
@@ -57,6 +59,10 @@ public class CustomerClient {
 		RestTemplate restTemplate = new RestTemplate();
 		Customer[] cs = restTemplate.getForObject("http://"+serviceIp+":"+servicePort+"/customer/list", Customer[].class);
 		return Arrays.asList(cs).stream().filter(c->c.getId()==id).collect(Collectors.toList()).get(0);		
+	}
+	
+	public Customer getByIdFallback(long id) {
+		return new Customer("mockedCustomer");
 	}
 
 }
